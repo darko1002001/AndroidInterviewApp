@@ -36,27 +36,41 @@ public class ContactAdapter extends BaseAdapter {
         return null;
     }
 
+    class ViewHolder {
+
+        final TextView nameTextView;
+        final TextView phoneTextView;
+        final TextView emailTextView;
+
+        public ViewHolder(View v) {
+            nameTextView = (TextView) v.findViewById(R.id.listitem_contact_name);
+            phoneTextView = (TextView) v.findViewById(R.id.listitem_contact_phone);
+            emailTextView = (TextView) v.findViewById(R.id.listitem_contact_email);
+        }
+    }
+
     public long getItemId(int position) {
         return position;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        //TODO This is badly implemented. Please implement using a ViewHolder pattern.
+        ViewHolder holder;
+
+        if(convertView == null) {
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_contact, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         Contact contact = data.get(position);
+        holder.nameTextView.setText(contact.getName());
+        holder.phoneTextView.setText(contact.getMobile());
+        holder.emailTextView.setText(contact.getEmail());
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contactView = inflater.inflate(R.layout.listitem_contact, parent, false);
-
-        TextView nameTextView = (TextView) contactView.findViewById(R.id.listitem_contact_name);
-        nameTextView.setText(contact.getName());
-        TextView phoneTextView = (TextView) contactView.findViewById(R.id.listitem_contact_phone);
-        phoneTextView.setText(contact.getMobile());
-        TextView emailTextView = (TextView) contactView.findViewById(R.id.listitem_contact_email);
-        emailTextView.setText(contact.getEmail());
-
-        return contactView;
+        return convertView;
     }
 
 
