@@ -32,6 +32,8 @@ public class ContactTest extends ParcelableTest {
         assertEquals(Contact.EXTRA_CONTACT, "Extra_Contact");
     }
 
+
+
     public void testItHasAnEmptyConstructor() {
         Contact c = new Contact(); // this will throw an error in compile if it doesn't exit but good enough
         assertNotNull(c);
@@ -94,6 +96,10 @@ public class ContactTest extends ParcelableTest {
         Contact c = new Contact();
         c.setEmail(EMAIL);
         assertTrue("Can message with a set email", c.canMessage());
+    }
+
+    public void testItDefinesACreatorForParcels() {
+        assertNotNull(Contact.CREATOR);
     }
 
     public void testParcelable() {
