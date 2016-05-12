@@ -14,7 +14,7 @@ public class Contact implements Parcelable, Serializable {
     public static final int REQUEST_EDIT_CONTACT = 10001;
     public static final String EXTRA_CONTACT = "Extra_Contact";
 
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+    public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
         public Contact createFromParcel(Parcel in) {
             return new Contact(in);
         }
