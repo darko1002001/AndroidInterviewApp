@@ -36,7 +36,7 @@ public class FeatureActivity extends BaseActivity {
 
         //setup listview
         ListView listView = (ListView) featureContent.findViewById(R.id.listView);
-        adapter = new ContactAdapter(this);
+        adapter = new ContactAdapter();
         listView.setAdapter(adapter);
 
         sendFooRequest();

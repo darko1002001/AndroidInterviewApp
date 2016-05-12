@@ -1,12 +1,13 @@
 package termine24.secondinterviewtest.app.activities.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import java.util.List;
+
 import termine24.secondinterviewtest.R;
 import termine24.secondinterviewtest.app.model.Contact;
 import termine24.secondinterviewtest.app.model.Contacts;
@@ -17,11 +18,9 @@ import termine24.secondinterviewtest.app.model.Contacts;
  */
 public class ContactAdapter extends BaseAdapter {
 
-    private Context context;
     private Contacts data;
 
-    public ContactAdapter(Context context) {
-        this.context = context;
+    public ContactAdapter() {
         this.data = new Contacts();
     }
 
@@ -29,11 +28,8 @@ public class ContactAdapter extends BaseAdapter {
        return this.data.size();
     }
 
-    public Object getItem(int pos) {
-        if (this.data.size() <= pos) {
-            return this.data.get(pos);
-        }
-        return null;
+    public Contact getItem(int pos) {
+        return this.data.get(pos);
     }
 
     class ViewHolder {
@@ -54,9 +50,7 @@ public class ContactAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ViewHolder holder;
-
         if(convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_contact, parent, false);
             holder = new ViewHolder(convertView);
@@ -64,12 +58,10 @@ public class ContactAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        Contact contact = data.get(position);
+        Contact contact = getItem(position);
         holder.nameTextView.setText(contact.getName());
         holder.phoneTextView.setText(contact.getMobile());
         holder.emailTextView.setText(contact.getEmail());
-
         return convertView;
     }
 
