@@ -120,7 +120,7 @@ public class DetailsActivity extends BaseActivity {
             //Start Edit Activity and pass it the contact object that should be edited
             Intent intent = new Intent(getActivity(), EditActivity.class);
             intent.putExtra(Contact.EXTRA_CONTACT, (Parcelable)contact);
-            getActivity().startActivityForResult(intent, Contact.REQUEST_EDIT_CONTACT);
+            startActivityForResult(intent, Contact.REQUEST_EDIT_CONTACT);
         }
 
     }
